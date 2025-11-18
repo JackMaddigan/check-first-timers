@@ -7,20 +7,38 @@ export default function Display() {
   const { persons } = useData();
   const id = Number(params.id);
   const person = persons[id];
-  const genderText = {m: "Male", f: "Female", o: "Other"}
+  const genderText = { m: 'Male', f: 'Female', o: 'Other' };
 
   return (
-    <section>
-      <button onClick={() => navigate(`/persons/${id}`)}>Done</button>
-      <h1>{person.name}</h1>
-      <h3>Citizenship: {person.country}</h3>
-      <h3>Birth Date: {new Date(person.dob).toLocaleDateString('en-NZ', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
-        })}
-      </h3>
-      <h3>Gender: {genderText[person.gender]}</h3>
+    <section className="flex flex-col p-4 items-center">
+      <button onClick={() => navigate(`/persons/${id}`)} className="self-end cursor-pointer">
+        Done
+      </button>
+
+      <div className='flex flex-col gap-16'>
+        <div>
+          <h4 className="text-sm font-bold text-gray-500">NAME</h4>
+          <h2 className="text-6xl">{person.name}</h2>
+        </div>
+        <div>
+          <h4 className="text-sm font-bold text-gray-500">CITIZENSHIP</h4>
+          <h2 className="text-6xl">{person.country}</h2>
+        </div>
+        <div>
+          <h4 className="text-sm font-bold text-gray-500">BIRTH DATE</h4>
+          <h2 className="text-6xl">
+            {new Date(person.dob).toLocaleDateString('en-NZ', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+            })}
+          </h2>
+        </div>
+        <div>
+          <h4 className="text-sm font-bold text-gray-500">GENDER</h4>
+          <h2 className="text-6xl">{genderText[person.gender]}</h2>
+        </div>
+      </div>
     </section>
   );
 }
