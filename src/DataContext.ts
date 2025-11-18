@@ -3,7 +3,7 @@ import { createContext, useContext } from 'react';
 export interface Person {
   name: string,
   country: string,
-  dob: Date,
+  dob: string,
   gender: "m" | "f" | "o",
   checked: boolean,
   comment: string

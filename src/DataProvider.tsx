@@ -20,7 +20,7 @@ export default function DataProvider({ children }: { children: ReactNode }) {
       return {
         name,
         country,
-        dob: new Date(dob),
+        dob,
         gender,
         checked: checked ? JSON.parse(checked) === true : false,
         comment: comment || '',
@@ -35,7 +35,7 @@ export default function DataProvider({ children }: { children: ReactNode }) {
       persons
         .map(
           (p) =>
-            `${p.name},${p.country},${p.dob.toISOString().split("T")[0]},${p.gender},${p.checked},${p.comment}`
+            `${p.name},${p.country},${new Date(p.dob).toISOString().split("T")[0]},${p.gender},${p.checked},${p.comment}`
         )
         .join('\n') || 'No Persons';
     await navigator.clipboard.writeText(str);
