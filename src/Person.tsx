@@ -7,7 +7,6 @@ export default function Person() {
   const params = useParams();
   const id = Number(params.id);
   const navigate = useNavigate();
-  console.log(id, persons);
   const person = persons[id];
 
   const [comment, setComment] = useState(person.comment);
