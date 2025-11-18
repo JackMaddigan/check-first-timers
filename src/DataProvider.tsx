@@ -32,12 +32,13 @@ export default function DataProvider({ children }: { children: ReactNode }) {
   const exportPersons = async () => {
     // save to clipboard
     const str =
+    `Name,Country,Birth Date,Gender,Checked,Comment\n` +
       persons
         .map(
           (p) =>
             `${p.name},${p.country},${new Date(p.dob).toISOString().split("T")[0]},${p.gender},${p.checked},${p.comment}`
         )
-        .join('\n') || 'No Persons';
+        .join('\n');
     await navigator.clipboard.writeText(str);
   };
 
