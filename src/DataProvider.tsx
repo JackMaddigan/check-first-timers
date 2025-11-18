@@ -12,11 +12,9 @@ export default function DataProvider({ children }: { children: ReactNode }) {
   }, [persons]);
 
   const importPersons = (csv: string) => {
-    console.log("Importing...", csv);
     // parse csv with Name, Country, Birth Date, Gender, Checked, Comment
     const data = csv.split('\n').slice(1).flatMap((line) => {
       const [name, country, dob, gender, checked, comment] = line.split(',');
-      console.log(name, country, dob, gender, checked, comment);
       if (!name || !country || !dob || !gender) return [];
       if (!['m', 'f', 'o'].includes(gender)) return [];
       return {
@@ -45,7 +43,6 @@ export default function DataProvider({ children }: { children: ReactNode }) {
 
 
   const updatePerson = (i: number, p: Person) => {
-    console.log("Updating", p.name, "...");
     const newPersons = [...persons];
     newPersons[i] = p;
     setPersons(newPersons);
